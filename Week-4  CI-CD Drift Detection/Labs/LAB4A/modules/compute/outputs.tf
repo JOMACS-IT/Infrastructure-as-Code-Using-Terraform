@@ -8,3 +8,5 @@ output "ec2-instance-id" {
     value = aws_instance.web.id
   
 }
+
+
