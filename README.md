@@ -247,11 +247,9 @@ terraform destroy
 
 ```
 Infrastructure-as-Code-Using-Terraform/
+│                 
 │
-├── .github/
-│   └── workflows/                  # GitHub Actions CI/CD pipelines
-│
-├── Books/                          # Recommended reading materials
+├── Books/                          
 │
 ├── Week-1 introduction to Iac With Terraform/
 ├── Week-2 State Management/
