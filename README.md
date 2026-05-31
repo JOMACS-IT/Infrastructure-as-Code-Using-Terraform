@@ -420,3 +420,11 @@ This project is licensed under the MIT License. See [LICENSE](LICENSE) for detai
 ---
 
 > **Note:** This repository is actively developed as a learning resource. Each week folder is self-contained and can be followed independently, but working through them in order gives the best experience.
+
+
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=jerney_user
+DB_PASSWORD=jerney_pass_2026
+DB_NAME=jerney_db
+PORT=5000
