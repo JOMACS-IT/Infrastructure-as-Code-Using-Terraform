@@ -17,8 +17,7 @@
 ---
 
 ## 📌 Project Overview
-
-This project provisions a **production-grade 3-tier AWS application architecture** using Terraform. The infrastructure is automated via GitHub Actions (or Terraform Cloud), hardened with security tooling, and enforced through pre-commit hooks — ensuring a consistent, secure, and repeatable deployment pipeline.
+In this project, you will automate the provisioning of a **production-grade 3-tier AWS application architecture** using Terraform. The infrastructure provisioning should be automated via GitHub Actions (or Terraform Cloud), hardened with security tooling, and enforced through pre-commit hooks—ensuring a consistent, secure, and repeatable deployment pipeline.
 
 ### Key Benefits
 
@@ -72,7 +71,7 @@ Internet Gateway
 ### Tier Breakdown
 
 **Tier 1 — Web Tier (Public Subnets)**
-- EC2 instances managed by Auto Scaling Groups
+- EC2 instances managed by Auto Scaling Group
 - Application Load Balancer handles inbound HTTP/HTTPS
 - Security Groups restrict traffic to ports 80/443
 
@@ -96,7 +95,7 @@ Provision the complete 3-tier architecture with Terraform modules:
 - VPC, Subnets, Route Tables, Internet Gateway, NAT Gateway
 - Application Load Balancers (Web and App tiers)
 - EC2 Auto Scaling Groups with Launch Templates
-- Amazon RDS (Multi-AZ) with Subnet Groups
+- Amazon RDS (Multi-AZ) 
 - Security Groups and NACLs
 - IAM Roles and Instance Profiles
 
@@ -106,15 +105,18 @@ Full CI/CD pipeline that:
 - Runs `terraform fmt`, `validate`, and `plan` on every Pull Request
 - Requires PR approval before `terraform apply`
 - Posts plan output directly in PR comments
-- Manages state remotely (S3 + DynamoDB or Terraform Cloud)
+- Manages state remotely (S3 or Terraform Cloud)
 
 ### ✅ 3. Security Tooling Integration
 Integrated security scanning tools:
 
-- **tfsec** — Terraform static analysis for misconfigurations
-- **checkov** — Policy-as-code security scanning
-- **terrascan** — Compliance and security checks
-- **AWS Config / Security Hub** — Runtime compliance monitoring
+- **trivy** 
+- **checkov** 
+- **terrascan** 
+- **gitleaks** 
+- **detect-secretes** 
+
+And any other relevant security tool 
 
 ### ✅ 4. Pre-commit Hooks
 Enforced local checks before every commit:
