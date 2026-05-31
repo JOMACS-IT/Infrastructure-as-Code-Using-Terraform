@@ -1,333 +1,245 @@
-# Infrastructure as Code Using Terraform
+# Infrastructure as Code Using Terraform 🚀
 
-![Terraform](https://img.shields.io/badge/Terraform-1.7+-7B42BC?style=for-the-badge&logo=terraform&logoColor=white)
-![AWS](https://img.shields.io/badge/AWS-Cloud-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI%2FCD-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
-![HCL](https://img.shields.io/badge/Language-HCL-7B42BC?style=for-the-badge)
+A hands-on, week-by-week learning series covering **Infrastructure as Code (IaC)** using **HashiCorp Terraform** — from fundamentals to advanced production patterns.
+
+![Terraform](https://img.shields.io/badge/Terraform-1.x-7B42BC?style=for-the-badge&logo=terraform&logoColor=white)
+![HCL](https://img.shields.io/badge/HCL-100%25-blueviolet?style=for-the-badge)
+![AWS](https://img.shields.io/badge/AWS-Cloud-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-
-A structured, hands-on learning programme for provisioning and managing AWS infrastructure using Terraform — from foundational concepts through to production-grade CI/CD pipelines with automated security scanning, drift detection, and AI-assisted plan reviews.
 
 ---
 
-## Table of Contents
+## 📋 Table of Contents
 
-- [Overview](#overview)
-- [Programme Structure](#programme-structure)
+- [About This Repository](#about-this-repository)
 - [Prerequisites](#prerequisites)
+- [Course Structure](#course-structure)
+  - [Week 1 – Introduction to IaC with Terraform](#week-1--introduction-to-iac-with-terraform)
+  - [Week 2 – State Management](#week-2--state-management)
+  - [Week 3 – Modules](#week-3--modules)
+  - [Week 4 – CI/CD & Drift Detection](#week-4--cicd--drift-detection)
+  - [Week 5 – Terraform Cloud & Spacelift](#week-5--terraform-cloud--spacelift)
 - [Getting Started](#getting-started)
-- [Week-by-Week Guide](#week-by-week-guide)
-- [CI/CD Pipeline](#cicd-pipeline)
-- [Security Tooling](#security-tooling)
 - [Folder Structure](#folder-structure)
+- [Resources & Books](#resources--books)
 - [Contributing](#contributing)
 - [License](#license)
 
 ---
 
-## Overview
+## About This Repository
 
-This repository is a five-week guided learning programme that takes you from writing your first Terraform resource block to running a fully automated, secure CI/CD pipeline on GitHub Actions and Terraform cloud. Each week builds on the last, introducing progressively advanced concepts with real AWS infrastructure examples.
+This repository is a structured, progressive learning path for anyone who wants to master **Terraform** for real-world infrastructure automation. Each week builds on the previous one, introducing new concepts through practical examples and hands-on labs.
 
-By the end of the programme you will be able to:
-
-- Write, validate, and apply production-quality Terraform configurations
-- Manage Terraform state securely using remote backends on S3
-- Build reusable, versioned Terraform modules
-- Set up a GitHub Actions pipeline with automated linting, security scanning, plan review, manual approval gates, and drift detection
-- Integrate AI agents into your pipeline to review plans and summarise security findings
-
----
-
-## Programme Structure
-
-```
-Infrastructure-as-Code-Using-Terraform/
-│
-├── Week-1 introduction to Iac With Terraform/   # Core Terraform concepts
-├── Week-2 State Management/                     # Remote state and locking
-├── Week-3 Modules/                              # Reusable module patterns
-├── Week-4 CI-CD Drift Detection/                # GitHub Actions pipeline + drift
-│
-├── .github/workflows/                           # All CI/CD workflow definitions
-├── Books/                                       # Reference reading material
-├── .gitignore
-└── README.md
-```
+Whether you are a developer, DevOps engineer, or cloud architect, this series will equip you with the skills to write, manage, and scale infrastructure code with confidence.
 
 ---
 
 ## Prerequisites
 
-Before starting, make sure you have the following installed and configured:
+Before you begin, make sure you have the following installed and configured:
 
-| Tool | Version | Purpose |
+- [Terraform CLI](https://developer.hashicorp.com/terraform/downloads) (v1.0+)
+- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) configured with appropriate permissions
+- A code editor (e.g., [VS Code](https://code.visualstudio.com/) with the HashiCorp Terraform extension)
+- Basic understanding of cloud computing concepts (AWS recommended)
+- Git installed and a GitHub account
+
+---
+
+## Course Structure
+
+### Week 1 – Introduction to IaC with Terraform
+
+📁 [`Week-1 introduction to Iac With Terraform`](./Week-1%20introduction%20to%20Iac%20With%20Terraform/)
+
+**What You'll Learn:**
+- What Infrastructure as Code (IaC) is and why it matters
+- Overview of Terraform: architecture, providers, and the HCL language
+- Terraform workflow: `init` → `plan` → `apply` → `destroy`
+- Writing your first Terraform configuration to provision AWS resources
+- Understanding `terraform.tfstate` and what it does
+
+**Key Concepts:**
+- Providers and Resources
+- Variables and Outputs
+- Data Sources
+- The Terraform Registry
+
+---
+
+### Week 2 – State Management
+
+📁 [`Week-2 State Management`](./Week-2%20State%20Management/)
+
+**What You'll Learn:**
+- Deep dive into Terraform state and why it is critical
+- Local vs. remote state storage
+- Configuring an S3 backend with DynamoDB state locking
+- State commands: `terraform state list`, `mv`, `rm`, `pull`, `push`
+- Handling state drift and resolving conflicts
+
+**Key Concepts:**
+- Remote Backends (S3 + DynamoDB)
+- State Locking and Consistency
+- Importing existing infrastructure with `terraform import`
+- Sensitive data in state files
+
+---
+
+### Week 3 – Modules
+
+📁 [`Week-3 Modules`](./Week-3%20Modules/)
+
+**What You'll Learn:**
+- Why modules are the building blocks of reusable Terraform code
+- Creating your own custom modules
+- Using modules from the Terraform Public Registry
+- Passing inputs and returning outputs from modules
+- Module versioning and best practices for module design
+
+**Key Concepts:**
+- Module structure (`main.tf`, `variables.tf`, `outputs.tf`)
+- Root module vs. child modules
+- Module composition and nesting
+- The `source` and `version` arguments
+
+---
+
+### Week 4 – CI/CD & Drift Detection
+
+📁 [`Week-4  CI-CD Drift Detection`](./Week-4%20%20CI-CD%20Drift%20Detection/)
+
+**What You'll Learn:**
+- Integrating Terraform into CI/CD pipelines (GitHub Actions)
+- Automating `terraform plan` and `terraform apply` safely
+- What infrastructure drift is and why it happens
+- Implementing automated drift detection using scheduled workflows
+- Handling drift alerts and remediation strategies
+
+**Key Concepts:**
+- GitHub Actions workflows for Terraform
+- `terraform plan -detailed-exitcode` for drift detection
+- Storing plan artifacts and reviewing changes in Pull Requests
+- Environment-based deployments (dev, staging, prod)
+- OIDC-based authentication with AWS (no long-lived credentials)
+
+---
+
+### Week 5 – Terraform Cloud & Spacelift
+
+📁 [`Week-5 Terraform Cloud & Spacelift`](./Week-5%20Terraform%20Cloud%20%26%20Spacelift/)
+
+**What You'll Learn:**
+- What Terraform Cloud (HCP Terraform) is and how it differs from the open-source CLI
+- Setting up a Terraform Cloud organisation, workspaces, and VCS-driven workflows
+- Remote state management and remote plan/apply execution in Terraform Cloud
+- Introduction to **Spacelift** as a powerful alternative IaC management platform
+- Connecting your GitHub repository to Spacelift stacks for GitOps-driven deployments
+- Policy as Code with **Sentinel** (Terraform Cloud) and Spacelift policies
+- Comparing Terraform Cloud vs Spacelift: when to use each
+
+**Key Concepts:**
+
+| Feature | Terraform Cloud (HCP Terraform) | Spacelift |
 |---|---|---|
-| [Terraform](https://developer.hashicorp.com/terraform/install) | >= 1.7.0 | Core IaC tool |
-| [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) | >= 2.0 | Authenticate to AWS |
-| [TFLint](https://github.com/terraform-linters/tflint) | latest | Terraform linter |
-| [Checkov](https://www.checkov.io) | latest | Security scanner |
-| [Gitleaks](https://github.com/gitleaks/gitleaks) | latest | Secret scanner |
-| [pre-commit](https://pre-commit.com) | latest | Local git hooks |
-| [terraform-docs](https://terraform-docs.io) | latest | Auto-generate docs |
-| Git | >= 2.0 | Version control |
+| Remote State | ✅ Native backend | ✅ Managed state |
+| VCS Integration | GitHub, GitLab, Bitbucket | GitHub, GitLab, Bitbucket, Azure DevOps |
+| Policy as Code | Sentinel | OPA-based policies |
+| Drift Detection | ✅ Health assessments | ✅ Built-in drift detection |
+| Multi-IaC Support | Terraform / OpenTofu | Terraform, Pulumi, CloudFormation, Ansible |
+| Self-hosted Agents | ✅ Terraform Cloud Agents | ✅ Spacelift private workers |
 
-**AWS Account setup:**
+**Hands-On Labs:**
 
-```bash
-aws configure
-# AWS Access Key ID:     <your-key>
-# AWS Secret Access Key: <your-secret>
-# Default region:        us-east-2
-# Default output format: json
+1. **Lab 5.1 – Terraform Cloud Setup:** Create a free Terraform Cloud account, configure an organisation, link a VCS-connected workspace to this repository, and trigger a remote `plan` and `apply`.
+
+2. **Lab 5.2 – Remote State in Terraform Cloud:** Migrate local state to a Terraform Cloud workspace backend and observe cross-workspace state sharing using `terraform_remote_state`.
+
+3. **Lab 5.3 – Sentinel Policy Enforcement:** Write a Sentinel policy that prevents any EC2 instance from being provisioned with an instance type outside an approved list. Attach it to your Terraform Cloud workspace.
+
+4. **Lab 5.4 – Spacelift Stack:** Create a Spacelift account, connect this repository, and configure a Stack that mirrors your Terraform Cloud workspace — including drift detection and approval-gated applies.
+
+**Terraform Cloud Backend Configuration:**
+```hcl
+# backend.tf
+terraform {
+  cloud {
+    organization = "your-org-name"
+
+    workspaces {
+      name = "iac-terraform-week5"
+    }
+  }
+}
 ```
+
+**Sample Sentinel Policy:**
+```python
+# policies/allowed-instance-types.sentinel
+import "tfplan/v2" as tfplan
+
+allowed_types = ["t3.micro", "t3.small", "t3.medium"]
+
+ec2_instances = filter tfplan.resource_changes as _, rc {
+  rc.type is "aws_instance" and
+  rc.mode is "managed" and
+  (rc.change.actions contains "create" or rc.change.actions contains "update")
+}
+
+violations = filter ec2_instances as _, instance {
+  instance.change.after.instance_type not in allowed_types
+}
+
+main = rule {
+  length(violations) is 0
+}
+```
+
+**Connecting Spacelift to GitHub:**
+```bash
+# 1. Create a Spacelift account at https://spacelift.io
+# 2. Install the Spacelift GitHub App on your repository
+# 3. Create a new Stack in the Spacelift UI:
+#    - VCS: GitHub → select this repository
+#    - Project root: "Week-5 Terraform Cloud & Spacelift"
+#    - Runner image: Default (includes Terraform)
+#    - Set AWS credentials as Spacelift environment variables or use dynamic credentials
+# 4. Trigger a tracked run — Spacelift will plan on every push and apply on merge to main
+```
+
+**Key Takeaways:**
+- Terraform Cloud and Spacelift both solve the problem of running Terraform safely at scale — with remote execution, state management, and access control
+- Sentinel (Terraform Cloud) and OPA policies (Spacelift) shift compliance checks left, preventing non-compliant infrastructure from ever being applied
+- Spacelift's multi-IaC support and flexible policy engine make it a strong choice for organisations using more than just Terraform
+- Both platforms support private/self-hosted agents for use inside private networks
 
 ---
 
 ## Getting Started
 
-### 1. Clone the repository
-
 ```bash
+# 1. Clone the repository
 git clone https://github.com/kodcapsule/Infrastructure-as-Code-Using-Terraform.git
 cd Infrastructure-as-Code-Using-Terraform
-```
 
-### 2. Install pre-commit hooks
-
-```bash
-pip install pre-commit checkov
-pre-commit install
-pre-commit install --hook-type pre-push
-```
-
-### 3. Verify your tools
-
-```bash
-terraform version
-tflint --version
-checkov --version
-gitleaks version
-```
-
-### 4. Start with Week 1
-
-```bash
+# 2. Navigate to any week's folder
 cd "Week-1 introduction to Iac With Terraform"
+
+# 3. Initialize Terraform
 terraform init
+
+# 4. Preview the changes
 terraform plan
+
+# 5. Apply the configuration
 terraform apply
+
+# 6. Clean up resources when done
+terraform destroy
 ```
 
----
-
-## Week-by-Week Guide
-
-### Week 1 — Introduction to IaC with Terraform
-
-**Concepts covered:**
-- What is Infrastructure as Code and why it matters
-- Terraform core workflow: `init` → `plan` → `apply` → `destroy`
-- HCL syntax: resources, variables, outputs, data sources, locals
-- Provider configuration (AWS)
-- Terraform state basics
-
-**What you build:** Core AWS infrastructure — VPC, subnets, security groups, and EC2 instances — written from scratch using HCL.
-
-```bash
-cd "Week-1 introduction to Iac With Terraform"
-terraform init
-terraform validate
-terraform plan
-terraform apply -auto-approve
-```
-
-**Key files to study:**
-
-```
-main.tf          # resource definitions
-variables.tf     # input variables with types and defaults
-outputs.tf       # values exported after apply
-provider.tf      # AWS provider configuration
-```
-
----
-
-### Week 2 — State Management
-
-**Concepts covered:**
-- Why local state is dangerous in teams
-- Remote state backends using S3 + DynamoDB locking
-- `terraform state` commands: list, show, mv, rm
-- State isolation per environment (dev / staging / prod)
-- Bootstrapping backend infrastructure (the chicken-and-egg problem)
-- Importing existing resources into state
-
-**What you build:** S3 buckets and DynamoDB lock tables for each environment, with a bootstrap script to create them before Terraform manages anything else.
-
-```bash
-cd "Week-2 State Management"
-
-# Bootstrap the remote backends first
-bash scripts/bootstrap-backends.sh
-
-# Then initialise with the remote backend
-terraform init
-terraform plan
-terraform apply
-```
-
-**Backend configuration pattern used:**
-
-```hcl
-terraform {
-  backend "s3" {
-    bucket         = "myapp-tfstate-prod-<account-id>"
-    key            = "prod/terraform.tfstate"
-    region         = "us-east-2"
-    dynamodb_table = "myapp-tflock-prod"
-    encrypt        = true
-  }
-}
-```
-
----
-
-### Week 3 — Modules
-
-**Concepts covered:**
-- Module structure and best practices
-- Input variables, outputs, and locals inside modules
-- Calling local modules vs remote registry modules
-- Module versioning and pinning
-- The `for_each` and `count` meta-arguments
-- Module composition patterns
-
-**What you build:** A library of reusable modules — networking, compute, database, security, and monitoring — called from each environment root.
-
-```
-modules/
-├── networking/    # VPC, subnets, route tables, NAT gateway
-├── compute/       # EC2, Auto Scaling, Load Balancer
-├── database/      # RDS with parameter groups and snapshots
-├── security/      # IAM roles, security groups, KMS keys
-└── monitoring/    # CloudWatch dashboards, alarms, SNS topics
-```
-
-Calling a module from an environment:
-
-```hcl
-module "networking" {
-  source = "../../modules/networking"
-
-  vpc_cidr        = var.vpc_cidr
-  environment     = var.environment
-  azs             = ["us-east-2a", "us-east-2b", "us-east-2c"]
-  private_subnets = var.private_subnets
-  public_subnets  = var.public_subnets
-}
-```
-
----
-
-### Week 4 — CI/CD and Drift Detection
-
-**Concepts covered:**
-- GitHub Actions workflow structure for Terraform
-- Automated formatting, validation, and linting on PRs
-- Security scanning with Gitleaks, TFLint, and Checkov
-- Terraform plan output in GitHub Issues for manual approval
-- The `trstringer/manual-approval` approval gate
-- Automated drift detection on a cron schedule
-- AI-assisted plan review using the Claude API
-- Pre-commit hooks for local enforcement
-
-**What you build:** A full GitHub Actions pipeline that enforces code quality, security, and a manual approval gate before any changes reach production.
-
-```
-.github/workflows/
-├── terraform-ci.yml          # PR checks: fmt, validate, lint, security scan
-├── terraform-cd.yml          # Plan → approval gate → apply
-└── drift-detection.yml       # Nightly scheduled drift check
-```
-
-**Pipeline flow:**
-
-```
-PR opened
-    │
-    ├── Gitleaks (secret scan)
-    ├── TFLint   (lint)
-    └── Checkov  (security scan)
-              │
-              ▼ all pass
-    Terraform Plan
-              │
-              ▼
-    GitHub Issue created with plan output
-    Manual approval required (comment "approved")
-              │
-              ▼
-    Terraform Apply
-              │
-              ▼
-    Nightly drift detection (cron)
-```
-
----
-
-## CI/CD Pipeline
-
-### Secrets required
-
-Add these in **GitHub → Settings → Secrets and variables → Actions**:
-
-| Secret | Description |
-|---|---|
-| `AWS_ACCESS_KEY_ID` | AWS credentials for plan and apply |
-| `AWS_SECRET_ACCESS_KEY` | AWS credentials for plan and apply |
-| `ANTHROPIC_API_KEY` | For AI plan review (Week 4, optional) |
-
-### Triggering the pipeline
-
-```
-Push to any branch    →  formatting + validation only
-Open a PR to main     →  full security scan + plan + approval gate
-Merge to main         →  apply to production
-Every night at 06:00  →  drift detection
-```
-
----
-
-## Security Tooling
-
-This repo uses a layered security approach — issues are caught as early as possible, ideally before they ever reach CI.
-
-| Layer | Tool | What it catches |
-|---|---|---|
-| Pre-commit (local) | Gitleaks | Hardcoded secrets and credentials |
-| Pre-commit (local) | TFLint | Lint errors, invalid resource arguments |
-| Pre-commit (local) | Checkov | Security misconfigurations in HCL |
-| Pre-commit (local) | `terraform fmt` | Formatting drift |
-| Pre-commit (local) | `terraform validate` | Syntax errors and internal references |
-| CI (GitHub Actions) | Gitleaks | Full git history secret scan |
-| CI (GitHub Actions) | TFLint | Per-environment linting |
-| CI (GitHub Actions) | Checkov | SARIF upload to GitHub Security tab |
-| CI (GitHub Actions) | Trivy | IaC + container image CVEs |
-| Scheduled | driftctl | Resources changed outside Terraform |
-| Scheduled | Prowler | CIS benchmark compliance checks |
-
-### Pre-commit configuration
-
-The `.pre-commit-config.yaml` at the root enforces all local checks. Set it up once:
-
-```bash
-pre-commit install
-pre-commit install --hook-type pre-push
-
-# Test against all files manually
-pre-commit run --all-files
-```
+> ⚠️ **Important:** Always review `terraform plan` output carefully before running `terraform apply`. Destroying resources may result in data loss.
 
 ---
 
@@ -337,94 +249,60 @@ pre-commit run --all-files
 Infrastructure-as-Code-Using-Terraform/
 │
 ├── .github/
-│   └── workflows/
-│       ├── terraform-ci.yml
-│       ├── terraform-cd.yml
-│       └── drift-detection.yml
+│   └── workflows/                  # GitHub Actions CI/CD pipelines
+│
+├── Books/                          # Recommended reading materials
 │
 ├── Week-1 introduction to Iac With Terraform/
-│   ├── main.tf
-│   ├── variables.tf
-│   ├── outputs.tf
-│   └── provider.tf
-│
 ├── Week-2 State Management/
-│   ├── main.tf
-│   ├── variables.tf
-│   ├── outputs.tf
-│   ├── backend.tf
-│   └── scripts/
-│       └── bootstrap-backends.sh
-│
 ├── Week-3 Modules/
-│   ├── modules/
-│   │   ├── networking/
-│   │   ├── compute/
-│   │   ├── database/
-│   │   ├── security/
-│   │   └── monitoring/
-│   └── environments/
-│       ├── dev/
-│       ├── staging/
-│       └── prod/
+├── Week-4  CI-CD Drift Detection/
+├── Week-5 Terraform Cloud & Spacelift/
 │
-├── Week-4 CI-CD Drift Detection/
-│   ├── .github/workflows/
-│   ├── .pre-commit-config.yaml
-│   ├── .tflint.hcl
-│   ├── .checkov.yaml
-│   └── .gitleaks.toml
-│
-├── Books/                        # Reference material
 ├── .gitignore
-├── .pre-commit-config.yaml
 └── README.md
 ```
 
 ---
 
+## Resources & Books
+
+The `Books/` directory contains curated reading materials to complement the weekly labs. Additional recommended resources:
+
+- 📖 [Terraform: Up & Running (3rd Edition)](https://www.terraformupandrunning.com/) – Yevgeniy Brikman
+- 📖 [HashiCorp Terraform Documentation](https://developer.hashicorp.com/terraform/docs)
+- 📖 [Terraform Best Practices](https://www.terraform-best-practices.com/)
+- 🎓 [HashiCorp Learn](https://developer.hashicorp.com/terraform/tutorials)
+- ☁️ [Terraform Cloud (HCP Terraform) Documentation](https://developer.hashicorp.com/terraform/cloud-docs)
+- 🚀 [Spacelift Documentation](https://docs.spacelift.io/)
+- 📜 [Sentinel Policy Language](https://developer.hashicorp.com/sentinel/docs)
+
+---
+
 ## Contributing
 
-Contributions are welcome. Please follow these steps:
+Contributions are welcome! If you find a bug, want to improve an example, or have ideas for additional labs:
 
 1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/your-feature-name`
-3. Make your changes and ensure all pre-commit hooks pass: `pre-commit run --all-files`
-4. Commit your changes: `git commit -m "feat: describe your change"`
-5. Push to your fork: `git push origin feature/your-feature-name`
-6. Open a pull request against `main`
+2. Create a new branch (`git checkout -b feature/your-feature-name`)
+3. Make your changes and commit (`git commit -m 'Add your message'`)
+4. Push to your branch (`git push origin feature/your-feature-name`)
+5. Open a Pull Request
 
-**Commit message convention:**
-
-```
-feat:     new feature or resource
-fix:      bug fix
-docs:     documentation changes
-refactor: code restructure without behaviour change
-security: security improvement
-ci:       CI/CD pipeline changes
-```
+Please follow the existing folder and naming conventions when adding new content.
 
 ---
 
 ## License
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+This project is licensed under the **MIT License** — see the [LICENSE](./LICENSE) file for details.
 
 ---
 
-## Author
+<div align="center">
 
-**kodcapsule** — [github.com/kodcapsule](https://github.com/kodcapsule)
+**⭐ If you find this repository helpful, please give it a star! ⭐**
 
----
+Made with ❤️ by [kodcapsule](https://github.com/kodcapsule)
 
-> **Note:** This repository is actively developed as a learning resource. Each week folder is self-contained and can be followed independently, but working through them in order gives the best experience.
-
-
-DB_HOST=localhost
-DB_PORT=5432
-DB_USER=jerney_user
-DB_PASSWORD=jerney_pass_2026
-DB_NAME=jerney_db
-PORT=5000
+</div>
