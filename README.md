@@ -27,7 +27,7 @@ A structured, hands-on learning programme for provisioning and managing AWS infr
 
 ## Overview
 
-This repository is a four-week guided learning programme that takes you from writing your first Terraform resource block to running a fully automated, secure CI/CD pipeline on GitHub Actions. Each week builds on the last, introducing progressively advanced concepts with real AWS infrastructure examples.
+This repository is a five-week guided learning programme that takes you from writing your first Terraform resource block to running a fully automated, secure CI/CD pipeline on GitHub Actions and Terraform cloud. Each week builds on the last, introducing progressively advanced concepts with real AWS infrastructure examples.
 
 By the end of the programme you will be able to:
 
