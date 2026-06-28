@@ -12,15 +12,7 @@ This lab walks through writing Terraform configuration files to provision a basi
 
 The lab builds the following network layout in a single AWS Region:
 
-```
-AWS Account
-└── Region
-    └── VPC (10.0.0.0/16)
-        ├── Internet Gateway (IGW)
-        └── Availability Zone
-            ├── Public Subnet   (10.0.1.0/24)
-            └── Private Subnet  (10.0.2.0/24)
-```
+![AWS Network Architecture](Images/LAB1B.png)
 
 - The **VPC** uses CIDR block `10.0.0.0/16`.
 - The **public subnet** (`10.0.1.0/24`) has a route to the Internet Gateway and auto-assigns public IPs to instances launched in it.
@@ -81,9 +73,6 @@ variable "region" {
   default = "us-east-1"
 }
 
-variable "instance_type" {
-  default = "t2.micro"
-}
 ```
 
 ### Step 4: Create the VPC
