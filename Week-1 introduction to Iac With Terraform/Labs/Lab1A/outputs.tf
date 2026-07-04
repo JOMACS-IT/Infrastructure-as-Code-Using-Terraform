@@ -1,15 +1,6 @@
-output "instance_public_ip" {
-  value = aws_instance.web_server_hardcoded.public_ip
-}
 
-output "instance_id" {
-  value = aws_instance.web_server_hardcoded.id
-}
 
-output "instance_public_ip_using_data_source" {
-  value = aws_instance.web_server_using_data_source.public_ip
-}
-
-output "instance_id_using_data_source" {
-  value = aws_instance.web_server_using_data_source.id
+output "ec2_public_ip" {
+  value       = aws_instance.my_ec2.public_ip
+  description = "The public IP address of the EC2 instance."
 }
