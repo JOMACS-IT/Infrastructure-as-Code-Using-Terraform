@@ -5,7 +5,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 5.0"
+      version = "6.56.0"
     }
   }
 }
@@ -41,6 +41,8 @@ data "aws_ami" "amazon_linux_2023" {
 resource "aws_instance" "web-1" {
   ami           = data.aws_ami.amazon_linux_2023.id
   instance_type = var.instance_type
+
+  subnet_id = "subnet-0ee34b65d7ea49080"
 
   tags = {
     Name = "Terraform-Lab-Instance-prod"
