@@ -10,93 +10,17 @@ terraform {
   }
 }
 
+# terraform {
+#   backend "s3" {
+#     bucket       = "modules-s3-terraform-bucket"
+#     key          = "workspace-example/terraform.tfstate"
+#     region       = "us-east-1"
+#     encrypt      = true
+#     use_lockfile = true
 
-# Configure the AWS provider
+#   }
+# }
+
 provider "aws" {
-  region = var.region
+  region = var.aws_region
 }
-
-
-data "aws_ami" "amazon_linux_2023" {
-  most_recent = true
-  owners      = ["amazon"]
-
-  filter {
-    name   = "name"
-    values = ["al2023-ami-*-x86_64"]
-  }
-}
-
-
-# resource "aws_instance" "web" {
-#   ami           = data.aws_ami.amazon_linux_2023.id
-#   instance_type = var.instance_type
-
-#   tags = {
-#     Name = "Terraform-Lab-Instance"
-#   }
-# }
-
-
-resource "aws_instance" "web-1" {
-  ami           = data.aws_ami.amazon_linux_2023.id
-  instance_type = var.instance_type
-
-  subnet_id = "subnet-0ee34b65d7ea49080"
-
-  tags = {
-    Name = "Terraform-Lab-Instance-prod"
-  }
-}
-
-
-
-
-
-
-# =================== S3 backend configuration ===================
-
-
-# aws s3 bucket to store the terraform state file
-
-
-# resource "aws_s3_bucket" "s3-backend" {
-
-#   bucket = "s3-state-backend-terraform-workspace-lab-101"
-#   lifecycle {
-#     prevent_destroy = true
-#   }
-
-# }
-
-
-# resource "aws_s3_bucket_versioning" "s3-bucket_ver" {
-#   bucket = aws_s3_bucket.s3-backend.id
-#   versioning_configuration {
-#     status = "Enabled"
-#   }
-# }
-
-# resource "aws_s3_bucket_server_side_encryption_configuration" "name" {
-#   bucket = aws_s3_bucket.s3-backend.id
-#   rule {
-#     apply_server_side_encryption_by_default {
-#       sse_algorithm = "AES256"
-#     }
-#   }
-
-
-# }
-
-
-
-# resource "aws_s3_bucket_public_access_block" "example" {
-#   bucket = aws_s3_bucket.s3-backend.id
-
-#   block_public_acls       = true
-#   block_public_policy     = true
-#   ignore_public_acls      = true
-#   restrict_public_buckets = true
-# }
-
-

@@ -1,20 +1,21 @@
 
 variable "region" {
+  description = "The AWS region to deploy resources in"
   type        = string
-  default     = "us-east-1"
-  description = "The AWS region where resources will be created."
+  default     = "eu-north-1"
 
 }
 
+
+
 variable "ec2_ami" {
+  description = "The AMI ID for the EC2 instance"
   type        = string
-  default     = "ami-08f44e8eca9095668"
-  description = "The AMI ID for the EC2 instance."
+  default     = "ami-0ac1f955d6e62f3f1"
 }
 
 variable "instance_type" {
+  description = "The instance type for the EC2 instance"
   type        = string
-  default     = "t2.micro"
-  description = "The instance type for the EC2 instance."
-
+  default     = "t3.micro"
 }

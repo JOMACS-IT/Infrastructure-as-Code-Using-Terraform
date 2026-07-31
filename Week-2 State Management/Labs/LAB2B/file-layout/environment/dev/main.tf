@@ -5,7 +5,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 5.0"
+      version = "6.56.0"
     }
   }
 }
@@ -36,10 +36,12 @@ data "aws_ami" "amazon_linux_2023" {
 
 
 
-resource "aws_instance" "web" {
+resource "aws_instance" "showcase" {
   ami           = data.aws_ami.amazon_linux_2023.id
   instance_type = var.instance_type
 
+  subnet_id = "subnet-0ee34b65d7ea49080"
+ 
   tags = {
     Name = "Terraform-Lab-Instance-dev"
   }
@@ -68,7 +70,7 @@ resource "aws_instance" "web" {
 
 resource "aws_s3_bucket" "s3-backend" {
 
-  bucket = "s3-state-backend-terraform-env-dev-lab-101"
+  bucket = "file-layouts-terraform-bucket"
   lifecycle {
     prevent_destroy = true
   }

@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket       = "junior-terraform-state-bucket"
+    bucket       = "practice-s3-terraform-bucket"
     key          = "workspace-example/terraform.tfstate"
     region       = "us-east-1"
     encrypt      = true
